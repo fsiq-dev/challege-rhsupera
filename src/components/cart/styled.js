@@ -19,7 +19,7 @@ export const CartSideBar = styled.div`
   /* padding: 25px; */
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-direction: column;
   overflow: auto;
   height: 100%;
@@ -49,8 +49,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-bottom: 1px solid #000;
-background-color: #7f53ac;
-background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
+background-color: #a40606;
+background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
 color: #fff;
 padding: 25px;
 `
@@ -105,7 +105,11 @@ export const Button = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: #7f53ac;
-  background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
+  background-color: #a40606;
+  background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
   color: #fff;
+`
+export const Item = styled.div`
+height: 100%;
+padding: 10px;
 `

@@ -5,7 +5,8 @@ const FooterContainer = styled.footer`
   height: 100px;
   justify-content: center;
   align-items: center;
-  background-color: #191919;
+  background-color: #a40606;
+  background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
   color: white;
 `
 const Footer = () => {

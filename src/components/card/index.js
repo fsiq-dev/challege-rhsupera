@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     fontSize: 16,
     fontWeight: 700,
     textAlign: 'center',
+    color: '#f37020',
     borderBottom: '1px solid #000',
   },
   pos: {
@@ -53,7 +54,7 @@ const CustomButton = styled.div`
 width: 100%;
 height: 30px;
 position: relative;
-background-color: blue;
+background-color: #f37020;
 color: #fff;
 display: flex;
 justify-content: center;
@@ -67,7 +68,7 @@ cursor: pointer;
 `
 
 export default function SimpleCard (props) {
-  const { title, price, score, image } = props
+  const { title, price, score, image, id } = props
 
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -92,14 +93,13 @@ export default function SimpleCard (props) {
   }
 
   const handleAddToCart = () => {
-    const data = { title, price, score, image }
-    dispatch(addToCart(data))
+    dispatch(addToCart(props))
   }
 
   return (
     <StyledCard>
       <CardContent>
-        <Typography className={classes.title} color='primary' gutterBottom>
+        <Typography className={classes.title} gutterBottom>
           {title}
         </Typography>
         <div className={classes.images}>
