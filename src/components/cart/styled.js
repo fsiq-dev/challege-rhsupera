@@ -8,6 +8,7 @@ export const CartSVG = styled.img`
   height: 24px;
   width: 30px;
   object-fit: cover;
+  cursor: pointer;
 `
 // CART SIDE BAR
 export const CartSideBar = styled.div`
@@ -116,6 +117,7 @@ export const Button = styled.div`
   background-color: #a40606;
   background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
   color: #fff;
+  cursor: pointer;
 `
 export const Item = styled.div`
 height: 100%;

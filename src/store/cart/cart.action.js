@@ -42,7 +42,7 @@ export const decreaseToCart = (product) => {
     const cartItems = getState().cart.cart.slice()
     cartItems.forEach((item) => {
       if (item.id === product.id) {
-        if (item.quantity >= 1) {
+        if (item.quantity > 1) {
           item.quantity -= 1
         }
       }
