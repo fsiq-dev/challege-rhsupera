@@ -70,18 +70,18 @@ visibility: hidden;
 
 // CHECKOUT
 export const CheckoutContainer = styled.div`
-height: 150px;
+max-height: 200px;
 width: 100%;
 background-color: rgba(13, 13, 13, 0.1);
 `
 export const CheckoutContent = styled.div`
 padding: 20px;
 `
-export const Total = styled.div`
+export const SubTotal = styled.div`
 display: flex;
 justify-content: space-between;
 margin-bottom: 10px;
-& span.total_label {
+& span.subtotal_label {
   color: #6A0599
 }
 `
@@ -94,6 +94,14 @@ margin-bottom: 10px;
 }
 & span.delivery_ammount {
   color: #BF1D00
+}
+`
+export const Total = styled.div`
+display: flex;
+justify-content: space-between;
+margin-bottom: 10px;
+& span.total_label {
+  color: #6A0599
 }
 `
 

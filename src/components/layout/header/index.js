@@ -23,6 +23,7 @@ const HeaderContainer = styled.div`
   padding: 0 30px;
   height: 80px;
   max-height: 100px;
+  
 `
 const Logo = styled.img`
   width: 100px;
@@ -58,7 +59,10 @@ const Form = styled.form`
 const StyledSearchIcon = styled(SearchIcon)`
 height: 100%;
 position: absolute;
-left: 15px;
+left: 475px;
+@media only screen and (max-width: 978px) {
+  left: 125px;
+}
 `
 const SearchInputField = styled.div`
   flex-grow: 1;
@@ -74,12 +78,16 @@ const Input = styled.input`
     display: flex;
     height: 48px;
     padding-left: 30px;
-    padding-right: 0;
+    padding-right: 0px;
     line-height: 1.25em;
     font-weight: 300;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     width: 100%;
+    @media only screen and (max-width: 960px) {
+      padding-left: 12px;
+      padding-right: 10px;
+  }
 `
 //
 

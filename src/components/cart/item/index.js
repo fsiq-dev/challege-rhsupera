@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 import ClearIcon from '@material-ui/icons/Clear'
 import { useDispatch } from 'react-redux'
-import { removeFromCart } from '../../../store/cart/cart.action'
+import { removeFromCart, decreaseToCart, incrementToCart } from '../../../store/cart/cart.action'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 const Item = styled.div`
 padding: 15px;
@@ -29,6 +31,7 @@ width: 100%;
 `
 const InputQuantity = styled.div`
 width: 20px;
+display: flex;
 `
 const Input = styled.input`
 width: 30px;
@@ -36,12 +39,20 @@ text-align: center;
 `
 
 const ItemCart = ({ data }) => {
-  console.log(data)
   const dispatch = useDispatch()
 
   const handleRemoveItem = (item) => {
     dispatch(removeFromCart(item))
   }
+
+  const handleIncrementToCart = (product) => {
+    dispatch(incrementToCart(product))
+  }
+
+  const handleDecreaseToCart = (product) => {
+    dispatch(decreaseToCart(product))
+  }
+
   return (
     <>
       {data.map((item, k) => {
@@ -54,7 +65,9 @@ const ItemCart = ({ data }) => {
               <span>{item.title}</span>
               <span>R$ {item.price.toFixed(2)}</span>
               <InputQuantity>
-                <Input type='number' value={item.quantity} min='1' />
+                <RemoveIcon fontSize='small' onClick={() => handleDecreaseToCart(item)} />
+                <Input type='text' value={item.quantity} min='1' readOnly />
+                <AddIcon fontSize='small' onClick={() => handleIncrementToCart(item)} />
               </InputQuantity>
             </Content>
             <ClearIcon fontSize='small' onClick={() => handleRemoveItem(item)} />

@@ -8,7 +8,7 @@ import useOnClickOutside from '../../hooks/useOnClickOutside'
 import cartSvg from '../../assets/cart-icon.svg'
 import {
   CartContainer, CartSVG, CartSideBar, CartHeader, CloseIcon, EmptyCart,
-  CheckoutContainer, CheckoutContent, Total, Delivery, Button, Item
+  CheckoutContainer, CheckoutContent, SubTotal, Total, Delivery, Button, Item
 } from './styled'
 
 const StyledBadge = withStyles((theme) => ({
@@ -30,24 +30,30 @@ const Cart = (props) => {
   const [isOpen, setOpen] = useState(false)
   const [subTotal, setSubTotal] = useState(0)
   const [deliveryCost, setDeliveryCost] = useState(0)
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     let qty = 0
-    let totalPrice = 0
-    let taxDefault = 0
+    let subTotal = 0
+    let deliveryCost = 0
+    let total = 0
 
     product?.forEach(item => {
       qty += item.quantity
-      totalPrice += item.quantity * item.price
-      if (totalPrice >= 250) {
-        taxDefault = ' Frete Gratis'
+      subTotal += item.quantity * item.price
+      if (subTotal >= 250) {
+        deliveryCost = ' Frete Gratis'
+        total = subTotal
       } else {
-        taxDefault += item.quantity * 10
+        deliveryCost += item.quantity * 10
+        total = subTotal + deliveryCost
       }
     })
-    setSubTotal(totalPrice.toFixed(2))
-    setDeliveryCost(taxDefault)
-  }, [subTotal, deliveryCost, product, setSubTotal, setDeliveryCost])
+
+    setSubTotal(subTotal.toFixed(2))
+    setDeliveryCost(deliveryCost)
+    setTotal(total.toFixed(2))
+  }, [subTotal, deliveryCost, product, total, setTotal, setSubTotal, setDeliveryCost])
 
   const handleOpenCartSideBar = () => {
     setOpen(!isOpen)
@@ -69,14 +75,18 @@ const Cart = (props) => {
         </Item>
         <CheckoutContainer>
           <CheckoutContent>
-            <Total>
-              <span className='total_label'>Sub Total:</span>
+            <SubTotal>
+              <span className='subtotal_label'>Sub Total:</span>
               <span>R${subTotal}</span>
-            </Total>
+            </SubTotal>
             <Delivery>
               <span className='delivery_label'>Valor de Frete:</span>
               <span className='delivery_ammount'>R${deliveryCost}</span>
             </Delivery>
+            <Total>
+              <span className='total_label'>Total:</span>
+              <span>R$ {total}</span>
+            </Total>
             <Button onClick={() => alert('Obrigado!, voce finalizou sua compra')}>
               Finalizar
             </Button>

@@ -15,9 +15,13 @@ const reducer = (state = INITIAL_STATE, action) => {
       state.cart = state.cart.filter(item => item.id !== action.data.id)
       state.quantity = state.quantity - action.data.quantity
       return state
-    case TYPES.CLEAR_ALL_FROM_CART:
-      state.cart = []
-      state.quantity = 0
+    case TYPES.DECREASE_TO_CART:
+      state.cart = action.data
+      state.quantity = state.quantity - 1
+      return state
+    case TYPES.INCREMENT_TO_CART:
+      state.cart = action.data
+      state.quantity = state.quantity + 1
       return state
     default:
       return state
