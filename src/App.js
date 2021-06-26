@@ -1,12 +1,13 @@
 import React from 'react'
 import Header from './components/layout/header'
 import Footer from './components/layout/footer'
+import Catalog from './components/catalog'
 
 const App = () => {
   return (
     <>
       <Header />
-      <h2>Hello World</h2>
+      <Catalog />
       <Footer />
     </>
   )

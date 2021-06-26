@@ -1,9 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
+import Badge from '@material-ui/core/Badge'
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 import cartSvg from '../../assets/cart-icon.svg'
-import Badge from '@material-ui/core/Badge'
+import {
+  CartContainer, CartSVG, CartSideBar, CartHeader, CloseIcon, EmptyCart,
+  CheckoutContainer, CheckoutContent, Total, Delivery, Button
+} from './styled'
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -14,21 +19,47 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge)
 
-const CartContainer = styled.div`
-margin-left: 20px;
-`
-const CartSVG = styled.img`
-  height: 24px;
-  width: 30px;
-  object-fit: cover;
-`
-const Cart = () => {
+const Cart = (props) => {
+  const $sideBarRef = useRef()
+  useOnClickOutside($sideBarRef, () => setOpen(false))
+
+  const [isOpen, setOpen] = useState(false)
+  const quantityCart = useSelector(state => state.cart.quantity)
+
+  const handleOpenCartSideBar = () => {
+    setOpen(!isOpen)
+  }
+
   return (
     <>
-      <CartContainer>
-        <StyledBadge badgeContent={1} color='secondary' />
+      <CartContainer onClick={handleOpenCartSideBar}>
+        <StyledBadge badgeContent={quantityCart} color='secondary' />
         <CartSVG src={cartSvg} />
       </CartContainer>
+      <CartSideBar ref={$sideBarRef} className={isOpen ? 'expand' : 'shrink'}>
+        <CartHeader>
+          <h2>Your Cart</h2>
+          <CloseIcon onClick={handleOpenCartSideBar} />
+        </CartHeader>
+        <EmptyCart>
+          Empty
+        </EmptyCart>
+        <CheckoutContainer>
+          <CheckoutContent>
+            <Total>
+              <span className='total_label'>Sub Total:</span>
+              <span>R$0</span>
+            </Total>
+            <Delivery>
+              <span className='delivery_label'>Valor de Frete:</span>
+              <span className='delivery_ammount'>R$0</span>
+            </Delivery>
+            <Button onClick={() => alert('Obrigado!, voce finalizou sua compra')}>
+              Finalizar
+            </Button>
+          </CheckoutContent>
+        </CheckoutContainer>
+      </CartSideBar>
     </>
   )
 }

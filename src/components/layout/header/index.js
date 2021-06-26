@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import logo from '../../../assets/logo-removebg-preview.png'
-import categoriaImagem from '../../../assets/game-ratings-featured.jpg'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 import SearchIcon from '@material-ui/icons/Search'
@@ -115,7 +113,7 @@ const Header = () => {
     <>
       <SHeader>
         <HeaderContainer>
-          <Logo src={logo} />
+          <Logo src='/assets/image/logo-removebg-preview.png' />
           <SearchInput>
             <Form>
               <SearchInputField>
@@ -132,7 +130,7 @@ const Header = () => {
           </SearchInput>
           <MenuContainer>
             <Category> {/* Mock para um possivel troca de categoria de produtos */}
-              <Avatar src={categoriaImagem} />
+              <Avatar src='/assets/image/game-ratings-featured.jpg' />
               <p>Games</p>
               <ArrowDropDownIcon />
             </Category>
