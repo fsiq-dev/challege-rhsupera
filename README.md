@@ -15,3 +15,5 @@ também
 $ yarn install      # instala as dependências
 $ yarn start        # inicia o servidor
 ```
+#Deploy
+=> https://challege-rhsupera.vercel.app/
